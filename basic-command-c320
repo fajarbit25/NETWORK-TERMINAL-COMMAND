@@ -1,0 +1,7 @@
+#ENABLE SECIRITY 212
+conf t
+pon-onu-mng gpon-onu_1/1/1:1
+security-mgmt 212 state enable mode forward protocol web
+exit
+exit
+
