@@ -2,15 +2,15 @@
 ***********
 conf t
 interface gpon-olt_1/1/2
-onu 4 type ALL sn xxxxxx
+onu xx type ALL sn xxxxxx
 exit
 
 #Config Profile ONU
 *******************
 interface gpon-onu_1/1/2:4
-tcont 4 profile 30M
-gemport 1 tcont 4
-gemport 1 traffic-limit upstream 30M downstream 30M
+tcont 5 profile 20M
+gemport 1 tcont 5
+gemport 1 traffic-limit upstream 20M downstream 20M
 service-port 1 vport 1 user-vlan 143 vlan 143
 exit
 
@@ -18,7 +18,7 @@ exit
 **************
 pon-onu-mng gpon-onu_1/1/2:4
 service 1 gemport 1 vlan 143
-wan-ip mode pppoe username HARYRIZKYMAULIDAN@1750487186 password d63WcZHfUrbcr3wn vlan-profile netmedia143 host 1
+wan-ip mode pppoe username DRSHANDIFAISALMERU@1754479851 password MmIzQBCz7svJ16Lm vlan-profile netmedia143 host 1
 security-mgmt 212 state enable mode forward protocol web
 exit
 
