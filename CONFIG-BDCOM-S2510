@@ -1,0 +1,225 @@
+hostname RIT-PT.PLN.PLTS.PANGKEP-BD.S2510-CPE-01
+
+username j2m password multimedia123
+service password-encryption
+
+ddm enable
+
+vlan 13
+name NMS
+
+vlan 2806 
+name INTERNET.BROADBAND
+
+
+Line vty 0 4
+login authentication default
+login authorization default
+
+Time-zone WIB 7
+ntp server 10.14.4.2 
+ntp server 10.14.4.23
+
+lldp run
+
+tacacs-server host 10.14.4.12
+tacacs-server host 10.14.4.7
+tacacs-server host 10.14.4.8
+tacacs-server host 10.14.4.9
+tacacs-server host 10.14.4.18
+tacacs-server host 10.14.4.19
+
+
+ip access-list standard 88
+ permit  10.14.4.4 0.0.0.0
+ permit  10.14.4.5 0.0.0.0
+ permit  10.14.3.11 0.0.0.0
+ permit  10.14.4.14 0.0.0.0
+ permit  10.14.3.30 0.0.0.0
+ permit  10.14.3.103 0.0.0.0
+ permit  10.14.3.108 0.0.0.0
+ permit  172.25.43.89 0.0.0.0
+ permit  10.14.3.48 0.0.0.0
+ permit  10.14.3.14 0.0.0.0
+ permit  10.14.3.18 0.0.0.0
+ permit  10.14.3.19 0.0.0.0
+ permit  10.14.3.24 0.0.0.0
+ permit  10.14.3.25 0.0.0.0
+ permit  10.14.3.26 0.0.0.0
+ permit  192.168.25.0 0.0.0.255
+ permit  172.16.60.0 0.0.0.255
+ permit  172.16.61.0 0.0.0.255
+ permit  172.16.44.0 0.0.0.255
+ permit  172.16.62.0 0.0.0.255
+ permit  172.21.24.0 0.0.0.255
+ permit  172.21.2.0 0.0.0.255
+ permit  192.168.12.0 0.0.0.255
+ permit  192.168.27.0 0.0.0.255
+ permit  192.168.14.0 0.0.0.255
+ permit  172.21.7.0 0.0.0.255
+ permit  172.21.52.0 0.0.0.255
+ permit  172.21.19.0 0.0.0.255
+ permit  192.168.11.0 0.0.0.255
+ permit  172.21.12.0 0.0.0.255
+ permit  192.168.10.0 0.0.0.255
+ permit  192.168.19.0 0.0.0.255
+ permit  192.168.56.0 0.0.0.255
+ permit  172.21.31.0 0.0.0.255
+ permit  192.168.36.0 0.0.0.255
+ permit  192.168.32.0 0.0.0.255
+ permit  172.16.48.0 0.0.0.255
+ permit  192.168.38.0 0.0.0.255
+ permit  172.16.50.0 0.0.0.255
+ permit  192.168.40.0 0.0.0.255
+ permit  172.16.46.0 0.0.0.255
+ permit  192.168.15.0 0.0.0.255
+ permit  172.21.14.0 0.0.0.255
+ permit  172.21.32.0 0.0.0.255
+ permit  172.16.18.0 0.0.0.255
+ permit  172.16.255.0 0.0.0.255
+ permit  172.16.40.0 0.0.0.255
+ permit  172.16.42.0 0.0.0.255
+ permit  172.16.49.0 0.0.0.255
+ permit  172.16.51.0 0.0.0.255
+ permit  172.21.1.0 0.0.0.255
+ permit  172.21.18.0 0.0.0.255
+ permit  172.21.29.0 0.0.0.255
+ permit  172.21.30.0 0.0.0.255
+ permit  172.21.33.0 0.0.0.255
+ permit  172.21.46.0 0.0.0.255
+ permit  172.21.50.0 0.0.0.255
+ permit  172.21.6.0 0.0.0.255
+ permit  172.21.68.0 0.0.0.255
+ permit  172.30.1.0 0.0.0.255
+ permit  192.166.100.0 0.0.0.255
+ permit  192.166.130.0 0.0.0.255
+ permit  192.166.131.0 0.0.0.255
+ permit  192.166.132.0 0.0.0.255
+ permit  192.166.140.0 0.0.0.255
+ permit  192.166.141.0 0.0.0.255
+ permit  192.166.77.0 0.0.0.255
+ permit  192.168.100.0 0.0.0.255
+ permit  192.168.140.0 0.0.0.255
+ permit  192.168.142.0 0.0.0.255
+ permit  192.168.16.0 0.0.0.255
+ permit  192.168.17.0 0.0.0.255
+ permit  192.168.2.0 0.0.0.255
+ permit  192.168.254.0 0.0.0.255
+ permit  192.168.28.0 0.0.0.255
+ permit  192.168.30.0 0.0.0.255
+ permit  192.168.33.0 0.0.0.255
+ permit  192.168.35.0 0.0.0.255
+ permit  192.168.41.0 0.0.0.255
+ permit  192.168.42.0 0.0.0.255
+ permit  192.168.82.0 0.0.0.255
+ permit  202.158.70.0 0.0.0.255
+ permit  202.162.208.0 0.0.15.255
+ permit  10.14.3.121 0.0.0.0
+ permit  10.14.3.122 0.0.0.0
+ permit  10.14.3.123 0.0.0.0
+ permit  10.14.3.124 0.0.0.0
+ permit  10.14.3.125 0.0.0.0
+ permit  10.14.3.126 0.0.0.0
+ permit  10.14.18.0 0.0.0.128
+ permit  172.19.10.0 0.0.0.255   ---- [ ganti sesuaikan vlan nms nya ]
+exit
+
+ip access-list standard 98
+ permit  10.14.3.7 0.0.0.0
+ permit  10.14.4.4 0.0.0.0
+ permit  10.14.3.14 0.0.0.0
+ permit  10.14.3.11 0.0.0.0
+ permit  10.14.3.23 0.0.0.0
+ permit  10.14.3.22 0.0.0.0
+ permit  10.14.3.20 0.0.0.0
+ permit  10.14.3.19 0.0.0.0
+ permit  10.14.3.18 0.0.0.0
+ permit  10.14.3.30 0.0.0.0
+ permit  10.14.3.26 0.0.0.0
+ permit  10.14.3.25 0.0.0.0
+ permit  10.14.3.24 0.0.0.0
+ permit  10.14.3.47 0.0.0.0
+ permit  10.14.3.46 0.0.0.0
+ permit  10.14.3.44 0.0.0.0
+ permit  10.14.3.43 0.0.0.0
+ permit  10.14.3.42 0.0.0.0
+ permit  10.14.3.41 0.0.0.0
+ permit  10.14.3.40 0.0.0.0
+ permit  10.14.3.49 0.0.0.0
+ permit  10.14.3.48 0.0.0.0
+ permit  10.14.3.108 0.0.0.0
+ permit  10.14.3.119 0.0.0.0
+ permit  10.14.3.118 0.0.0.0
+ permit  10.14.3.117 0.0.0.0
+ permit  10.14.3.116 0.0.0.0
+ permit  10.14.3.122 0.0.0.0
+ permit  10.14.3.121 0.0.0.0
+ permit  10.14.3.207 0.0.0.0
+ permit  10.14.3.206 0.0.0.0
+ permit  10.14.3.205 0.0.0.0
+ permit  10.14.3.244 0.0.0.0
+ permit  10.14.3.12 0.0.0.0
+ permit  10.14.3.156 0.0.0.0
+ permit  10.14.3.166 0.0.0.0
+ permit  10.14.3.208 0.0.0.0
+ permit  10.14.3.103 0.0.0.0
+ permit  10.14.3.123 0.0.0.0
+ permit  10.14.3.124 0.0.0.0
+ permit  10.14.3.125 0.0.0.0
+ permit  10.14.3.126 0.0.0.0
+ permit  10.14.3.163 0.0.0.0
+ permit  10.14.3.160 0.0.0.0
+ permit  10.14.3.28 0.0.0.0
+ permit  10.14.3.157 0.0.0.0
+ permit  10.14.3.106 0.0.0.0
+ permit  10.14.3.158 0.0.0.0
+ permit  10.14.3.162 0.0.0.0
+ permit  10.14.18.0 0.0.0.128
+exit
+
+aaa authentication login default group tacacs+
+aaa authentication login tacacs+ group tacacs+
+aaa authentication enable default none
+aaa authorization exec default group tacacs+
+aaa authentication login default local
+aaa authentication enable default none
+aaa authorization exec default local
+
+interface Vlan 13
+ip address 172.19.10.40 255.255.255.248
+no shutdown
+exit 
+
+interface GigaEthernet0/10
+description "Trunk To RIT-PLN.KP.MAMBI-ASR920-UPE-01#Gi 0/0/6"
+switchport mode trunk  
+switchport trunk vlan-allowed 1,13,2806
+no shutdown
+exit
+
+interface GigaEthernet 0/1
+description "04000186731 IBBC PT. Julia Multimedia Nusantara Kantor Desa Pamosean, Kab. Mamasa - Sulawesi Barat, Mambi [172.19.10.40/28]"
+switchport mode access
+switchport pvid 2806
+no shutdown
+exit
+
+ip route default 172.19.10.33
+
+snmp-server community 0 IPMPLS-BDCOM RO permit
+snmp-server community 0 IPMPLS-ICON+ RO 98
+snmp-server contact admin@iconpln.net.id
+snmp-server host 10.14.3.12 version v2c IPMPLS-ICON+ authentication configure snmp
+snmp-server location RIT-PT.PLN.PLTS.PANGKEP-BD.S2510-CPE-01
+
+logging 10.14.4.4
+logging 10.14.4.3
+
+banner message
+ text ************************************************************
+ text * THIS SYSTEM IS THE PROPERTY OF PT INDONESIA COMNETS PLUS *
+ text *             Maintenance Partner: niagamas                *
+ text *            Email: info@niagamas-setia.com                *
+ text ************************************************************
+
+write
