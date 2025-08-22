@@ -1,0 +1,74 @@
+config
+username plniconplusrit password cipher AHJ1YYlsKjJLDIs1HI7rq2VQas4rpXFN9X0bLsaPc-To group administrators
+
+ssh server start
+
+dhcp-snooping start
+
+vlan 14
+description NMS.RIT
+exit
+
+vlan 2809
+description IBBC200
+exit
+
+vlan 2810
+description IBBC200
+exit
+
+dhcp start
+
+syslog server 10.14.4.15 facility syslogd
+
+ntp unicast-peer 10.14.4.2
+ntp unicast-peer 10.14.4.5
+exit
+
+aaa
+tacacs-server host Backup-Tacacs ip-address 10.14.26.197 key APgd7m_tD8EeH25N_i-I9D5Dym5uN9PfKs7F6kt6bLiT
+tacacs-server host Main-Tacacs ip-address 10.14.4.18 key APgd7m_tD8EeH25N_i-I9D5Dym5uN9PfKs7F6kt6bLiT
+server-group group1 tacacs-server Main-Tacacs
+server-group group2 tacacs-server Backup-Tacacs
+aaa authentication login method method2 first group1 second group2 third local
+aaa accounting login method method3 first group1 second group2 third none
+aaa authorization login method method1 first group1 second group2 third local
+exit
+
+line console 1
+login authentication local
+enable authentication none
+exit
+
+line vty 1 5
+login authentication aaa method method2 auth-type ascii
+login authorization aaa method method1
+login accounting aaa method method3
+exit
+
+interface vlan 14
+description NMS.RIT
+ip address 172.31.19.130/30
+exit
+
+interface ge 1/0/1
+description 411401001287 IBBC RUDIS BUPATI KAB BOLAANG MONGONDOW LALOW (NMS 172.31.19.130/30)
+port link-type access
+port default vlan 2809
+dhcp-snooping enable
+dhcp-snooping option82 enable
+dhcp-snooping option82 append
+dhcp-snooping option82 circuit-id format user-defined '411401001287'
+exit
+
+interface ge 1/0/9
+description trunk-to-RIT-GI.LOLAK-ZYXEL.MGS3520-CPE-01 port 23
+port link-type trunk
+port trunk allow-pass vlan 14,2809-2810
+dhcp-snooping enable
+dhcp-snooping trust
+exit
+
+ip route-static 0.0.0.0 0.0.0.0 172.31.19.129
+
+save runnig-config
