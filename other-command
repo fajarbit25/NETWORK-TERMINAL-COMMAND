@@ -1,3 +1,15 @@
+1. Cek Tcon Profile
+show gpon profile tcont
+
+2. Buat profile tcont
+conf t
+gpon 
+profile tcont 100M type 1 assured 5000 maximun 100000
+profile tcont 5M type x assured 5000 maximun 5000
+profile tcont 10M type xx assured 5000 maximun 10000
+profile tcont 20M type xx assured 5000 maximun 20000
+profile tcont 10M type xx assured 5000 maximun 30000
+
 1. Cek Detail Config di Interface ke arah ONT
 OLT-ZTE_C320#show run interface gpon-onu_1/2/5:4
 Building configuration…Dukungan teknis untuk perangkat ZTE
