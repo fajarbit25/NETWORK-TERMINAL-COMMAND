@@ -1,3 +1,6 @@
+COM
+SPEED : 112500
+
 config
 username plniconplusrit password cipher AHJ1YYlsKjJLDIs1HI7rq2VQas4rpXFN9X0bLsaPc-To group administrators
 
@@ -5,16 +8,12 @@ ssh server start
 
 dhcp-snooping start
 
-vlan 14
+vlan 13
 description NMS.RIT
 exit
 
-vlan 2809
-description IBBC200
-exit
-
-vlan 2810
-description IBBC200
+vlan 2807
+description IBBC
 exit
 
 dhcp start
@@ -46,29 +45,29 @@ login authorization aaa method method1
 login accounting aaa method method3
 exit
 
-interface vlan 14
+interface vlan 13
 description NMS.RIT
-ip address 172.31.19.130/30
+ip address 172.31.20.126/30
 exit
 
 interface ge 1/0/1
-description 411401001287 IBBC RUDIS BUPATI KAB BOLAANG MONGONDOW LALOW (NMS 172.31.19.130/30)
+description "411405000600 IBBC PT Indomarco Prismatama TD9L Martajaya Pasangkayu [172.31.20.126/30]"
 port link-type access
-port default vlan 2809
+port default vlan 2807
 dhcp-snooping enable
 dhcp-snooping option82 enable
 dhcp-snooping option82 append
-dhcp-snooping option82 circuit-id format user-defined '411401001287'
+dhcp-snooping option82 circuit-id format user-defined '411405000600'
 exit
 
 interface ge 1/0/9
-description trunk-to-RIT-GI.LOLAK-ZYXEL.MGS3520-CPE-01 port 23
+description "RIT-PLN.PASANGKAYU-ZYXEL.MGS3520-CPE-01 GE0/0/20"
 port link-type trunk
-port trunk allow-pass vlan 14,2809-2810
+port trunk allow-pass vlan 13,2807
 dhcp-snooping enable
 dhcp-snooping trust
 exit
 
-ip route-static 0.0.0.0 0.0.0.0 172.31.19.129
+ip route-static 0.0.0.0 0.0.0.0 172.31.20.125
 
 save runnig-config
