@@ -47,11 +47,11 @@ exit
 
 interface vlan 13
 description NMS.RIT
-ip address 172.31.20.126/30
+ip address 172.31.20.130/29
 exit
 
 interface ge 1/0/1
-description "411405000600 IBBC PT Indomarco Prismatama TD9L Martajaya Pasangkayu [172.31.20.126/30]"
+description "411405000601 ICL Indomarco (MAKASAR)(TJZ4)(BARAS PASANGKAYU) [172.31.20.130/29]"
 port link-type access
 port default vlan 2807
 dhcp-snooping enable
@@ -61,13 +61,13 @@ dhcp-snooping option82 circuit-id format user-defined '411405000600'
 exit
 
 interface ge 1/0/9
-description "RIT-PLN.PASANGKAYU-ZYXEL.MGS3520-CPE-01 GE0/0/20"
+description "Trunk RIT-PLN.BARAS-ASR920-UPE-02 GE0/0/0"
 port link-type trunk
 port trunk allow-pass vlan 13,2807
 dhcp-snooping enable
 dhcp-snooping trust
 exit
 
-ip route-static 0.0.0.0 0.0.0.0 172.31.20.125
+ip route-static 0.0.0.0 0.0.0.0 172.31.20.129
 
 save runnig-config
