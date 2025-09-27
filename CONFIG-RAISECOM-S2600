@@ -3,6 +3,7 @@ SPEED : 112500
 
 config
 username plniconplusrit password cipher AHJ1YYlsKjJLDIs1HI7rq2VQas4rpXFN9X0bLsaPc-To group administrators
+username j2m password multimedia123 group administrators 
 
 ssh server start
 
@@ -12,8 +13,8 @@ vlan 13
 description NMS.RIT
 exit
 
-vlan 2807
-description IBBC
+vlan 666
+description METRONET.P2P
 exit
 
 dhcp start
@@ -51,19 +52,19 @@ ip address 172.31.20.130/29
 exit
 
 interface ge 1/0/1
-description "411405000601 ICL Indomarco (MAKASAR)(TJZ4)(BARAS PASANGKAYU) [172.31.20.130/29]"
+description "411202000676 METRONET P2P PLN GI POLMAS 150 KV"
 port link-type access
-port default vlan 2807
+port default vlan 666
 dhcp-snooping enable
 dhcp-snooping option82 enable
 dhcp-snooping option82 append
-dhcp-snooping option82 circuit-id format user-defined '411405000600'
+dhcp-snooping option82 circuit-id format user-defined '411202000676'
 exit
 
 interface ge 1/0/9
-description "Trunk RIT-PLN.BARAS-ASR920-UPE-02 GE0/0/0"
+description "Trunk RIT-GIT.PINRANG-ME3600-UPE-02 GE0/0/21"
 port link-type trunk
-port trunk allow-pass vlan 13,2807
+port trunk allow-pass vlan 13,666
 dhcp-snooping enable
 dhcp-snooping trust
 exit
