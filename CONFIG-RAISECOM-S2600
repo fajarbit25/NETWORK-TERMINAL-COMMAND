@@ -3,7 +3,7 @@ SPEED : 112500
 
 config
 username plniconplusrit password cipher AHJ1YYlsKjJLDIs1HI7rq2VQas4rpXFN9X0bLsaPc-To group administrators
-username j2m password cipher Multimedia@123 group administrators 
+username j2m password cipher Multimedia123 group administrators 
 
 ssh server start
 
