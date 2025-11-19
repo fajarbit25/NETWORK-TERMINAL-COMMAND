@@ -7,18 +7,19 @@ exit
 
 #Config Profile ONU
 *******************
-interface gpon-onu_1/1/2:7
+interface gpon-onu_1/1/2:1
+name "DIAYULHAQ@1755871617"
 tcont 5 profile 20M
 gemport 1 tcont 5
 gemport 1 traffic-limit upstream 20M downstream 20M
-service-port 1 vport 1 user-vlan 143 vlan 143
+service-port 1 vport 1 user-vlan 144 vlan 144
 exit
 
 #Create WAN IP  
 **************
-pon-onu-mng gpon-onu_1/1/2:7
-service 1 gemport 1 vlan 143
-wan-ip mode pppoe username MuhammadRezaFadhilah@1730706224 password KhqNYMY2HcWtsbxD vlan-profile netmedia143 host 1
+pon-onu-mng gpon-onu_1/1/2:1
+service 1 gemport 1 vlan 144
+wan-ip mode pppoe username DIAYULHAQ@1755871617 password 39gFOJycgEOvjGFW vlan-profile pricom144 host 1
 security-mgmt 212 state enable mode forward protocol web
 exit
 
