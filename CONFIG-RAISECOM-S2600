@@ -9,12 +9,12 @@ ssh server start
 
 dhcp-snooping start
 
-vlan 13
+vlan 14
 description NMS.RIT
 exit
 
-vlan 666
-description METRONET.P2P
+vlan 2808
+description INTERNET.IBBC
 exit
 
 dhcp start
@@ -47,28 +47,27 @@ login accounting aaa method method3
 exit
 
 interface vlan 13
-description NMS.RIT
-ip address 172.31.20.130/29
+ip address 172.31.22.130/30
 exit
 
 interface ge 1/0/1
-description "411202000676 METRONET P2P PLN GI POLMAS 150 KV"
+description "111401010436 MAHKAMAH KONSTITUSI RI UNIV AL ASYARIAH MANDAR"
 port link-type access
-port default vlan 666
+port default vlan 2808
 dhcp-snooping enable
 dhcp-snooping option82 enable
 dhcp-snooping option82 append
-dhcp-snooping option82 circuit-id format user-defined '411202000676'
+dhcp-snooping option82 circuit-id format user-defined '111401010436'
 exit
 
 interface ge 1/0/9
-description "Trunk RIT-GIT.PINRANG-ME3600-UPE-02 GE0/0/21"
+description "Trunk RIT.MAKASAR.SHELTER.GI.POLMAS-HP.5130-CPE-01"
 port link-type trunk
-port trunk allow-pass vlan 13,666
+port trunk allow-pass vlan 1, 14 ,2808
 dhcp-snooping enable
 dhcp-snooping trust
 exit
 
-ip route-static 0.0.0.0 0.0.0.0 172.31.20.129
+ip route-static 0.0.0.0 0.0.0.0 172.31.22.129
 
 save runnig-config
